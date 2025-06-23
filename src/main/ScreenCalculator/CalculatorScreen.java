@@ -168,6 +168,7 @@ public class CalculatorScreen {
                             displayText.setText(total);
                             total1 = 0.0;
                             total2 = 0.0;
+                            break;
                         case '-':
                             total1 = Double.parseDouble(displayText.getText());
                             backupTotal = Double.parseDouble(total) - total1;
