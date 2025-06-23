@@ -231,6 +231,166 @@ public class CalculatorScreen {
             }
         });
 
+        btSub.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (displayText.getText().isEmpty()){
+                    System.out.println("Text in displayText is empty");
+                }
+                if(!ActivatedButtons){
+                    for(JButton button : buttonsNumbers){
+                        button.setEnabled(true);
+                    }
+                    ActivatedButtons = true;
+                }
+                if (!total.isEmpty() && displayText.getText().equals(total)){
+                    System.out.println("if 2");
+                    displayText.setText(null);
+                    math_operation = '-';
+
+                } else if (!total.isEmpty() && !displayText.getText().equals(total)) {
+                    System.out.println("if 3");
+                    total1 = Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    backupTotal = Double.parseDouble(total) - total1;
+                    total = String.valueOf(backupTotal);
+                    System.out.println("Total sub" + total);
+                    displayText.setText(total);
+                    System.out.println("Backup "+backupTotal);
+                    System.out.println("Tota1: " + total1);
+                    System.out.println("Tota2:" + total1);
+                    math_operation = '-';
+                } else if (!total.isEmpty()){
+                    System.out.println("if 4");
+                    total1 = Double.parseDouble(total);
+                    System.out.println("Total sub" + total);
+                    displayText.setText(null);
+                    math_operation = '-';
+                }else if(total2 == 0.0 && total1 != 0.0) {
+                    System.out.println("if 5");
+                    total1 = total1 - Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    math_operation = '-';
+                    System.out.println(math_operation);
+                    System.out.println("Total1 " + total1);
+                    System.out.println("Total2 " + total2);
+                    System.out.println("Total " + total);
+
+                } else if (total2 == 0.0) {
+                    System.out.println("if 6");
+                    total1 = Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    math_operation = '-';
+                    System.out.println(math_operation);
+                    System.out.println("Total1 " + total1);
+                    System.out.println("Total2 " + total2);
+                    System.out.println("Total " + total);
+                }
+            }
+        });
+
+        btMult.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!ActivatedButtons){
+                    for(JButton button : buttonsNumbers){
+                        button.setEnabled(true);
+                    }
+                    ActivatedButtons = true;
+                }
+                if (!total.isEmpty() && displayText.getText().equals(total)){
+                    System.out.println("if 2");
+                    displayText.setText(null);
+                    math_operation = '*';
+
+                } else if (!total.isEmpty() && !displayText.getText().equals(total)) {
+                    System.out.println("if 3");
+                    total1 = Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    backupTotal = Double.parseDouble(total) - total1;
+                    total = String.valueOf(backupTotal);
+                    System.out.println("Total sub" + total);
+                    displayText.setText(total);
+                    System.out.println("Backup "+backupTotal);
+                    System.out.println("Tota1: " + total1);
+                    System.out.println("Tota2:" + total1);
+                    math_operation = '*';
+                } else if (!total.isEmpty()){
+                    System.out.println("if 4");
+                    total1 = Double.parseDouble(total);
+                    System.out.println("Total sub" + total);
+                    displayText.setText(null);
+                    math_operation = '-';
+                }else if(total2 == 0.0 && total1 != 0.0) {
+                    System.out.println("if 5");
+                    total1 = total1 - Double.parseDouble(displayText.getText());
+
+                    math_operation = '-';
+                    System.out.println(math_operation);
+                    System.out.println("Total1 " + total1);
+                    System.out.println("Total2 " + total2);
+                    System.out.println("Total " + total);
+                    displayText.setText(null);
+
+                } else if (total2 == 0.0) {
+                    System.out.println("if 6");
+                    total1 = Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    math_operation = '-';
+                    System.out.println(math_operation);
+                    System.out.println("Total1 " + total1);
+                    System.out.println("Total2 " + total2);
+                    System.out.println("Total " + total);
+                }
+            }
+        });
+
+        btDiv.addActionListener(new ActionListener() {
+
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!ActivatedButtons){
+                    for(JButton button : buttonsNumbers){
+                        button.setEnabled(true);
+                    }
+                    ActivatedButtons = true;
+                }
+
+                if (!total.isEmpty() && displayText.getText().equals(total)){
+                    displayText.setText(null);
+                    math_operation = '/';
+                }
+                else if (!total.isEmpty() && !displayText.getText().equals(total)) {
+                    total1 = Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    backupTotal = Double.parseDouble(total) / total1;
+                    total = String.valueOf(backupTotal);
+                    displayText.setText(total);
+                    math_operation = '/';
+                }
+                else if (!total.isEmpty()) {
+                    total1 = Double.parseDouble(total);
+                    displayText.setText(null);
+                    math_operation = '/';
+                }
+                else if(total2 == 0.0 && total1 != 0.0) {
+                    total1 = total1 / Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    math_operation = '/';
+                }
+                else if (total2 == 0.0) {
+                    total1 = Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
+                    math_operation = '/';
+                }
+
+                System.out.println("Operação: " + math_operation);
+                System.out.println("Total1: " + total1);
+                System.out.println("Total2: " + total2);
+                System.out.println("Total: " + total);
+            }
+        });
 
 
     }
