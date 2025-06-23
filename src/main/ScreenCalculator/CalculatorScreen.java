@@ -175,6 +175,29 @@ public class CalculatorScreen {
                             displayText.setText(total);
                             total1 = 0.0;
                             total2 = 0.0;
+                            break;
+                        case '*':
+                            total1 = Double.parseDouble(displayText.getText());
+                            backupTotal = Double.parseDouble(total) * total1;
+                            total = String.valueOf(backupTotal);
+                            displayText.setText(total);
+                            total1 = 0.0;
+                            total2 = 0.0;
+                            break;
+                        case '/':
+                            total1 = Double.parseDouble(displayText.getText());
+                            if (total1 == 0.0) {
+                                JOptionPane.showMessageDialog(null, "Cannot divide by zero");
+                                btDelete.doClick();
+                            }else{
+                                backupTotal = Double.parseDouble(total) / total1;
+                                total = String.valueOf(backupTotal);
+                                displayText.setText(total);
+                                total1 = 0.0;
+                                total2 = 0.0;
+                                break;
+                            }
+
                     }
                 }
 
