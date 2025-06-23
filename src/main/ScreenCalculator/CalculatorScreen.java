@@ -1,6 +1,7 @@
 package main.ScreenCalculator;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 // FEITO POR WEDEM BENEDITO :)
@@ -28,16 +29,15 @@ public class CalculatorScreen {
     private JButton btSix;
     private JButton btEight;
     private JButton btNine;
-    private JButton btThreeZeros;
+    private JButton btTwoZeros;
     private JButton btDelete;
     private JButton btEquals;
     private JButton btAdd;
     private JButton btSub;
     private JButton btMult;
     private JButton btDiv;
-    private final JButton [] buttonsNumbers = {btOne, btTwo, btThree, btFour,btFive, btSix, btSeven , btEight, btNine, btZero, btThreeZeros};
-    private final JButton [] allNumbers = {btOne, btTwo, btThree, btFour,btFive, btSix, btSeven , btEight, btNine, btZero, btThreeZeros, btDiv, btMult, btSub, btDelete};
-
+    private JButton btPoint;
+    private final JButton [] buttonsNumbers = {btOne, btTwo, btThree, btFour,btFive, btSix, btSeven , btEight, btNine, btZero, btTwoZeros, btPoint};
     public static void main(String[] args) {
         JFrame frame = new JFrame("Calculator");
         frame.setContentPane(new CalculatorScreen().CalculatorScreen);
@@ -46,7 +46,6 @@ public class CalculatorScreen {
         frame.setVisible(true);
 
     }
-
     public CalculatorScreen() {
         displayText.setEditable(false);
         btOne.addActionListener(new ActionListener() {
@@ -129,11 +128,21 @@ public class CalculatorScreen {
             }
         });
 
-        btThreeZeros.addActionListener(new ActionListener() {
+        btTwoZeros.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String btTxt = displayText.getText() + btThreeZeros.getText();
+                String btTxt = displayText.getText() + btTwoZeros.getText();
                 displayText.setText(btTxt);
+            }
+        });
+
+        btPoint.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!displayText.getText().contains(".")) {
+                    String btTxt = displayText.getText() + btPoint.getText();
+                    displayText.setText(btTxt);
+                }
             }
         });
 
@@ -255,7 +264,6 @@ public class CalculatorScreen {
                 }
                 if (!total.isEmpty() && displayText.getText().equals(total)){
                     System.out.println("if 2");
-                    System.out.println("MathOperation Add " + math_operation);
                     displayText.setText(null);
                     math_operation = '+';
 
@@ -266,9 +274,6 @@ public class CalculatorScreen {
                     backupTotal = Double.parseDouble(total) + total1;
                     total = String.valueOf(backupTotal);
                     displayText.setText(total);
-                    System.out.println("Backup "+backupTotal);
-                    System.out.println("Totalzin: " + total);
-                    System.out.println("Tota1: " + total1);
                     math_operation = '+';
                 } else if (!total.isEmpty()){
                     System.out.println("if 4");
@@ -281,9 +286,6 @@ public class CalculatorScreen {
                     displayText.setText(null);
                     math_operation = '+';
                     System.out.println(math_operation);
-                    System.out.println("Total1 " + total1);
-                    System.out.println("Total2 " + total2);
-                    System.out.println("Total " + total);
 
                 } else if (total2 == 0.0) {
                     System.out.println("if 6");
@@ -291,9 +293,6 @@ public class CalculatorScreen {
                     displayText.setText(null);
                     math_operation = '+';
                     System.out.println(math_operation);
-                    System.out.println("Total1 " + total1);
-                    System.out.println("Total2 " + total2);
-                    System.out.println("Total " + total);
                 }
             }
         });
@@ -321,16 +320,11 @@ public class CalculatorScreen {
                     displayText.setText(null);
                     backupTotal = Double.parseDouble(total) - total1;
                     total = String.valueOf(backupTotal);
-                    System.out.println("Total sub" + total);
                     displayText.setText(total);
-                    System.out.println("Backup "+backupTotal);
-                    System.out.println("Tota1: " + total1);
-                    System.out.println("Tota2:" + total1);
                     math_operation = '-';
                 } else if (!total.isEmpty()){
                     System.out.println("if 4");
                     total1 = Double.parseDouble(total);
-                    System.out.println("Total sub" + total);
                     displayText.setText(null);
                     math_operation = '-';
                 }else if(total2 == 0.0 && total1 != 0.0) {
@@ -339,9 +333,6 @@ public class CalculatorScreen {
                     displayText.setText(null);
                     math_operation = '-';
                     System.out.println(math_operation);
-                    System.out.println("Total1 " + total1);
-                    System.out.println("Total2 " + total2);
-                    System.out.println("Total " + total);
 
                 } else if (total2 == 0.0) {
                     System.out.println("if 6");
@@ -349,9 +340,6 @@ public class CalculatorScreen {
                     displayText.setText(null);
                     math_operation = '-';
                     System.out.println(math_operation);
-                    System.out.println("Total1 " + total1);
-                    System.out.println("Total2 " + total2);
-                    System.out.println("Total " + total);
                 }
             }
         });
@@ -376,38 +364,26 @@ public class CalculatorScreen {
                     displayText.setText(null);
                     backupTotal = Double.parseDouble(total) - total1;
                     total = String.valueOf(backupTotal);
-                    System.out.println("Total sub" + total);
                     displayText.setText(total);
-                    System.out.println("Backup "+backupTotal);
-                    System.out.println("Tota1: " + total1);
-                    System.out.println("Tota2:" + total1);
                     math_operation = '*';
                 } else if (!total.isEmpty()){
                     System.out.println("if 4");
                     total1 = Double.parseDouble(total);
-                    System.out.println("Total sub" + total);
                     displayText.setText(null);
-                    math_operation = '-';
+                    math_operation = '*';
                 }else if(total2 == 0.0 && total1 != 0.0) {
                     System.out.println("if 5");
                     total1 = total1 - Double.parseDouble(displayText.getText());
-
-                    math_operation = '-';
+                    math_operation = '*';
                     System.out.println(math_operation);
-                    System.out.println("Total1 " + total1);
-                    System.out.println("Total2 " + total2);
-                    System.out.println("Total " + total);
                     displayText.setText(null);
 
                 } else if (total2 == 0.0) {
                     System.out.println("if 6");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
-                    math_operation = '-';
+                    math_operation = '*';
                     System.out.println(math_operation);
-                    System.out.println("Total1 " + total1);
-                    System.out.println("Total2 " + total2);
-                    System.out.println("Total " + total);
                 }
             }
         });
@@ -451,11 +427,6 @@ public class CalculatorScreen {
                     displayText.setText(null);
                     math_operation = '/';
                 }
-
-                System.out.println("Operação: " + math_operation);
-                System.out.println("Total1: " + total1);
-                System.out.println("Total2: " + total2);
-                System.out.println("Total: " + total);
             }
         });
 
