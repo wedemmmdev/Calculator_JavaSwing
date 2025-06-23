@@ -3,7 +3,10 @@ package main.ScreenCalculator;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+// FEITO POR WEDEM BENEDITO :)
+// FEITO POR WEDEM BENEDITO :)
+// FEITO POR WEDEM BENEDITO :)
+// FEITO POR WEDEM BENEDITO :)
 public class CalculatorScreen {
     private double total1 = 0.0;
     private double total2 = 0.0;
@@ -32,7 +35,8 @@ public class CalculatorScreen {
     private JButton btSub;
     private JButton btMult;
     private JButton btDiv;
-    private JButton [] buttons = {btOne, btTwo, btThree, btFour,btFive, btSix, btSeven , btEight, btNine, btZero, btThreeZeros};
+    private final JButton [] buttonsNumbers = {btOne, btTwo, btThree, btFour,btFive, btSix, btSeven , btEight, btNine, btZero, btThreeZeros};
+    private final JButton [] allNumbers = {btOne, btTwo, btThree, btFour,btFive, btSix, btSeven , btEight, btNine, btZero, btThreeZeros, btDiv, btMult, btSub, btDelete};
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Calculator");
@@ -40,9 +44,11 @@ public class CalculatorScreen {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
     }
 
     public CalculatorScreen() {
+        displayText.setEditable(false);
         btOne.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,6 +140,12 @@ public class CalculatorScreen {
         btDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(!ActivatedButtons){
+                    for (JButton button : buttonsNumbers) {
+                        button.setEnabled(true);
+                    }
+                    ActivatedButtons = true;
+                }
                 displayText.setText(null);
                 total = "";
                 total1 = 0.0;
@@ -145,7 +157,7 @@ public class CalculatorScreen {
         btEquals.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(JButton button : buttons){
+                for(JButton button : buttonsNumbers){
                     button.setEnabled(false);
                 }
                 ActivatedButtons = false;
@@ -157,6 +169,30 @@ public class CalculatorScreen {
                             displayText.setText(total);
                             total2 = 0.0;
                             total1 = 0.0;
+                            break;
+                        case '-':
+                            total = Double.toString(total1-total2);
+                            displayText.setText(total);
+                            total2 = 0.0;
+                            total1 = 0.0;
+                            break;
+                        case '*':
+                            total = Double.toString(total1*total2);
+                            displayText.setText(total);
+                            total2 = 0.0;
+                            total1 = 0.0;
+                            break;
+                        case '/':
+                            if (total2 == 0.0) {
+                                JOptionPane.showMessageDialog(null, "Cannot divide by zero");
+                                btDelete.doClick();
+                            }else{
+                                total = Double.toString(total1/total2);
+                                displayText.setText(total);
+                                total2 = 0.0;
+                                total1 = 0.0;
+                                break;
+                            }
 
                     }
                 }else if (!total.isEmpty() && total1 == 0.0 && total2 == 0.0 && !displayText.getText().isEmpty() && !displayText.getText().equals(total)){
@@ -208,21 +244,25 @@ public class CalculatorScreen {
         btAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (displayText.getText().isEmpty()){
+                    System.out.println("Text in displayText is empty");
+                }
                 if(!ActivatedButtons){
-                    for(JButton button : buttons){
+                    for(JButton button : buttonsNumbers){
                         button.setEnabled(true);
                     }
                     ActivatedButtons = true;
                 }
-                if (!total.isEmpty() && total1 == 0.0 && displayText.getText().isEmpty()){
+                if (!total.isEmpty() && displayText.getText().equals(total)){
+                    System.out.println("if 2");
+                    System.out.println("MathOperation Add " + math_operation);
                     displayText.setText(null);
                     math_operation = '+';
 
-                } else if (!total.isEmpty() && displayText.getText().equals(total)){
-                    displayText.setText(null);
-
                 } else if (!total.isEmpty() && !displayText.getText().equals(total)) {
+                    System.out.println("if 3");
                     total1 = Double.parseDouble(displayText.getText());
+                    displayText.setText(null);
                     backupTotal = Double.parseDouble(total) + total1;
                     total = String.valueOf(backupTotal);
                     displayText.setText(total);
@@ -231,10 +271,12 @@ public class CalculatorScreen {
                     System.out.println("Tota1: " + total1);
                     math_operation = '+';
                 } else if (!total.isEmpty()){
+                    System.out.println("if 4");
                     total1 = Double.parseDouble(total);
                     displayText.setText(null);
                     math_operation = '+';
                 }else if(total2 == 0.0 && total1 != 0.0) {
+                    System.out.println("if 5");
                     total1 = total1 + Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     math_operation = '+';
@@ -244,6 +286,7 @@ public class CalculatorScreen {
                     System.out.println("Total " + total);
 
                 } else if (total2 == 0.0) {
+                    System.out.println("if 6");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     math_operation = '+';
