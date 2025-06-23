@@ -1,3 +1,3 @@
-## Calculadora com operações básicas progama em java usando o kit de ferramentas *Swing* para a criação de sua Interface.
+## Calculadora com operações básicas feita em java usando o kit de ferramentas *Swing* para a criação da Interface.
 
 ### Observação: A calculadora ainda está em desenvolvimento...
