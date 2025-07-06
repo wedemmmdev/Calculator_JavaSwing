@@ -4,3 +4,7 @@
 
 
 #### Update 23/06/2025: Gui redimensionada, correções de bugs, Botão ponto adicionado para operações com decimais, multiplicação, divisão e subtração implementadas
+
+#### Update 06/07/2025: Nova Interface GUI e Operação de porcentagem adicionada
+
+
