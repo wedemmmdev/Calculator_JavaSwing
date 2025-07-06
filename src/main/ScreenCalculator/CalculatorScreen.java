@@ -37,6 +37,8 @@ public class CalculatorScreen {
     private JButton btMult;
     private JButton btDiv;
     private JButton btPoint;
+    private JButton btPercentage;
+    private JPanel display;
     private final JButton [] buttonsNumbers = {btOne, btTwo, btThree, btFour,btFive, btSix, btSeven , btEight, btNine, btZero, btTwoZeros, btPoint};
     public static void main(String[] args) {
         JFrame frame = new JFrame("Calculator");
@@ -45,8 +47,47 @@ public class CalculatorScreen {
         frame.pack();
         frame.setVisible(true);
 
+
+
     }
     public CalculatorScreen() {
+        Color backgroundColor = new Color(45, 45, 45); // Cinza escuro
+        Color buttonColor = new Color(60, 60, 60); // Cinza médio
+        Color textColor = Color.WHITE;
+        Color operationButtonColor = new Color(255, 159, 67); // Laranja
+        Color displayColor = new Color(70, 70, 70);
+
+        CalculatorScreen.setBackground(backgroundColor);
+
+        display.setBackground(displayColor);
+        displayText.setBackground(displayColor);
+        displayText.setForeground(textColor);
+        displayText.setFont(new Font("Arial", Font.BOLD, 24));
+        displayText.setHorizontalAlignment(JTextField.RIGHT);
+        displayText.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        for (JButton button : buttonsNumbers) {
+            button.setBackground(buttonColor);
+            button.setForeground(textColor);
+            button.setFont(new Font("Arial", Font.BOLD, 18));
+            button.setFocusPainted(false);
+            button.setBorder(BorderFactory.createLineBorder(new Color(80, 80, 80), 1));
+        }
+
+        JButton[] operationButtons = {btAdd, btSub, btMult, btDiv, btEquals, btPercentage};
+        for (JButton button : operationButtons) {
+            button.setBackground(operationButtonColor);
+            button.setForeground(Color.WHITE);
+            button.setFont(new Font("Arial", Font.BOLD, 18));
+            button.setFocusPainted(false);
+            button.setBorder(BorderFactory.createLineBorder(new Color(230, 145, 60), 1));
+        }
+
+        btDelete.setBackground(new Color(200, 60, 60)); // Vermelho
+        btDelete.setForeground(Color.WHITE);
+        btDelete.setFont(new Font("Arial", Font.BOLD, 18));
+        btDelete.setFocusPainted(false);
+        btDelete.setBorder(BorderFactory.createLineBorder(new Color(180, 50, 50), 1));
         displayText.setEditable(false);
         btOne.addActionListener(new ActionListener() {
             @Override
@@ -191,6 +232,12 @@ public class CalculatorScreen {
                             total2 = 0.0;
                             total1 = 0.0;
                             break;
+                        case '%':
+                            total = Double.toString(total1%total2);
+                            displayText.setText(total);
+                            total2 = 0.0;
+                            total1 = 0.0;
+                            break;
                         case '/':
                             if (total2 == 0.0) {
                                 JOptionPane.showMessageDialog(null, "Cannot divide by zero");
@@ -263,12 +310,10 @@ public class CalculatorScreen {
                     ActivatedButtons = true;
                 }
                 if (!total.isEmpty() && displayText.getText().equals(total)){
-                    System.out.println("if 2");
                     displayText.setText(null);
                     math_operation = '+';
 
                 } else if (!total.isEmpty() && !displayText.getText().equals(total)) {
-                    System.out.println("if 3");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     backupTotal = Double.parseDouble(total) + total1;
@@ -276,19 +321,16 @@ public class CalculatorScreen {
                     displayText.setText(total);
                     math_operation = '+';
                 } else if (!total.isEmpty()){
-                    System.out.println("if 4");
                     total1 = Double.parseDouble(total);
                     displayText.setText(null);
                     math_operation = '+';
                 }else if(total2 == 0.0 && total1 != 0.0) {
-                    System.out.println("if 5");
                     total1 = total1 + Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     math_operation = '+';
                     System.out.println(math_operation);
 
                 } else if (total2 == 0.0) {
-                    System.out.println("if 6");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     math_operation = '+';
@@ -310,12 +352,10 @@ public class CalculatorScreen {
                     ActivatedButtons = true;
                 }
                 if (!total.isEmpty() && displayText.getText().equals(total)){
-                    System.out.println("if 2");
                     displayText.setText(null);
                     math_operation = '-';
 
                 } else if (!total.isEmpty() && !displayText.getText().equals(total)) {
-                    System.out.println("if 3");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     backupTotal = Double.parseDouble(total) - total1;
@@ -323,19 +363,16 @@ public class CalculatorScreen {
                     displayText.setText(total);
                     math_operation = '-';
                 } else if (!total.isEmpty()){
-                    System.out.println("if 4");
                     total1 = Double.parseDouble(total);
                     displayText.setText(null);
                     math_operation = '-';
                 }else if(total2 == 0.0 && total1 != 0.0) {
-                    System.out.println("if 5");
                     total1 = total1 - Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     math_operation = '-';
                     System.out.println(math_operation);
 
                 } else if (total2 == 0.0) {
-                    System.out.println("if 6");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     math_operation = '-';
@@ -354,12 +391,10 @@ public class CalculatorScreen {
                     ActivatedButtons = true;
                 }
                 if (!total.isEmpty() && displayText.getText().equals(total)){
-                    System.out.println("if 2");
                     displayText.setText(null);
                     math_operation = '*';
 
                 } else if (!total.isEmpty() && !displayText.getText().equals(total)) {
-                    System.out.println("if 3");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     backupTotal = Double.parseDouble(total) - total1;
@@ -367,19 +402,16 @@ public class CalculatorScreen {
                     displayText.setText(total);
                     math_operation = '*';
                 } else if (!total.isEmpty()){
-                    System.out.println("if 4");
                     total1 = Double.parseDouble(total);
                     displayText.setText(null);
                     math_operation = '*';
                 }else if(total2 == 0.0 && total1 != 0.0) {
-                    System.out.println("if 5");
                     total1 = total1 - Double.parseDouble(displayText.getText());
                     math_operation = '*';
                     System.out.println(math_operation);
                     displayText.setText(null);
 
                 } else if (total2 == 0.0) {
-                    System.out.println("if 6");
                     total1 = Double.parseDouble(displayText.getText());
                     displayText.setText(null);
                     math_operation = '*';
@@ -429,7 +461,23 @@ public class CalculatorScreen {
                 }
             }
         });
+        btPercentage.addActionListener(new ActionListener() {
 
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!ActivatedButtons){
+                    for(JButton button : buttonsNumbers){
+                        button.setEnabled(true);
+
+                    }
+                    ActivatedButtons = true;
+                }
+                if (!displayText.getText().isEmpty()){
+                    backupTotal = Double.parseDouble(displayText.getText()) / 100;
+                    displayText.setText(String.valueOf(backupTotal));
+                }
+            }
+        });
     }
 }
