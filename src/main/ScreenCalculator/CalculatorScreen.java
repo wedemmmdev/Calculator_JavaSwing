@@ -4,10 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-// FEITO POR WEDEM BENEDITO :)
-// FEITO POR WEDEM BENEDITO :)
-// FEITO POR WEDEM BENEDITO :)
-// FEITO POR WEDEM BENEDITO :)
 public class CalculatorScreen {
     private double total1 = 0.0;
     private double total2 = 0.0;
