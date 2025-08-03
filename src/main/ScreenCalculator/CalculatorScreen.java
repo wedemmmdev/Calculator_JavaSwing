@@ -4,10 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-// FEITO POR WEDEM BENEDITO :)
-// FEITO POR WEDEM BENEDITO :)
-// FEITO POR WEDEM BENEDITO :)
-// FEITO POR WEDEM BENEDITO :)
 public class CalculatorScreen {
     private double total1 = 0.0;
     private double total2 = 0.0;
@@ -213,43 +209,42 @@ public class CalculatorScreen {
                 ActivatedButtons = false;
                 if (total1 != 0.0 && total2 == 0.0) {
                     total2 = Double.parseDouble(displayText.getText());
-                    switch (math_operation){
-                        case '+':
-                            total = Double.toString(total1+total2);
+                    switch (math_operation) {
+                        case '+' -> {
+                            total = Double.toString(total1 + total2);
                             displayText.setText(total);
                             total2 = 0.0;
                             total1 = 0.0;
-                            break;
-                        case '-':
-                            total = Double.toString(total1-total2);
+                        }
+                        case '-' -> {
+                            total = Double.toString(total1 - total2);
                             displayText.setText(total);
                             total2 = 0.0;
                             total1 = 0.0;
-                            break;
-                        case '*':
-                            total = Double.toString(total1*total2);
+                        }
+                        case '*' -> {
+                            total = Double.toString(total1 * total2);
                             displayText.setText(total);
                             total2 = 0.0;
                             total1 = 0.0;
-                            break;
-                        case '%':
-                            total = Double.toString(total1%total2);
+                        }
+                        case '%' -> {
+                            total = Double.toString(total1 % total2);
                             displayText.setText(total);
                             total2 = 0.0;
                             total1 = 0.0;
-                            break;
-                        case '/':
+                        }
+                        case '/' -> {
                             if (total2 == 0.0) {
                                 JOptionPane.showMessageDialog(null, "Cannot divide by zero");
                                 btDelete.doClick();
-                            }else{
-                                total = Double.toString(total1/total2);
+                            } else {
+                                total = Double.toString(total1 / total2);
                                 displayText.setText(total);
                                 total2 = 0.0;
                                 total1 = 0.0;
-                                break;
                             }
-
+                        }
                     }
                 }else if (!total.isEmpty() && total1 == 0.0 && total2 == 0.0 && !displayText.getText().isEmpty() && !displayText.getText().equals(total)){
                     switch (math_operation){
